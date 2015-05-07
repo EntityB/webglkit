@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+Test of prototype inheritance
+-->
+<html>
+    <head>
+        <title>Test of prototype inheritance</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="../../src/core/prototype-inheritance.js"></script>
+        <script>
+
+            var Human = EB.extend({
+                ctor: function (name) {
+                    this.legsCount = 2;
+                    this.name = name;
+                }
+            });
+
+            var Woman = Human.extend({
+                ctor: function (name) {
+                    this._super.constructor.apply(this, arguments);
+                },
+                cryLoud: function () {
+                    console.log("My name is " + this.name + " and I will kill you!");
+                }
+            });
+
+            var lucy = new Woman("Lucy");
+            lucy.cryLoud();
+
+        </script>
+    </head>
+    <body>
+        <div>Results are visible in console. </div>
+    </body>
+</html>
